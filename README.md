@@ -1,10 +1,11 @@
 # HealthCare Project
 
-This is a comprehensive HealthCare management system consisting of three repositories:
+This is a comprehensive HealthCare management system developed with a **React Native mobile app** and supported by two backend repositories:
 
-- **[HealthCareApp](https://github.com/amanyara21/HealthCareApp)** — React Native mobile application  
-- **[HealthCareBackend](https://github.com/amanyara21/HealthCareBackend)** — Spring Boot monolithic backend  
-- **[HealthCareMicroservices](https://github.com/amanyara21/HealthCareMicroServices)** — Spring Boot microservices backend  
+- ✅ **[HealthCareApp](https://github.com/amanyara21/HealthCareApp)** — React Native mobile application (this repository)
+- 📦 **[HealthCareBackend](https://github.com/amanyara21/HealthCareBackend)** — Spring Boot monolithic backend
+- 🧩 **[HealthCareMicroservices](https://github.com/amanyara21/HealthCareMicroServices)** — Spring Boot microservices backend
+
 
 ---
 
