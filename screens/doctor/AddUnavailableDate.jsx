@@ -26,7 +26,6 @@ const AddUnavailableDatesScreen = () => {
             const formattedDates = Object.keys(selectedDates).map((dateStr) =>
                 moment(dateStr).format('YYYY-MM-DD')
             );
-            console.log(`${process.env.API_URL}/doctor/unavailable-dates`)
 
             await axios.post(
                 `${process.env.API_URL}/doctor/unavailable-dates`,

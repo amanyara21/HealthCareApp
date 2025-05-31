@@ -28,7 +28,6 @@ const AddDetail = () => {
     useEffect(() => {
         const fetchBodyParts = async () => {
             try {
-                console.log(`${process.env.API_URL}/users/body-parts`);
                 const res = await axios.get(`${process.env.API_URL}/users/body-parts`, {
                     headers: {
                         Authorization: `Bearer ${userToken}`

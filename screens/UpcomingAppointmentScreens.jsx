@@ -14,14 +14,11 @@ const UpcomingAppointmentScreen = ({navigation}) => {
   const fetchAppointments = async () => {
     try {
       const apiUrl = `${process.env.API_URL}/user/appointments/upcoming`;
-      console.log(apiUrl)
       const response = await axios.get(apiUrl, {
         headers: { Authorization: `Bearer ${userToken}` },
       });
       setAppointments(response.data);
-      console.log(response.data)
     } catch (error) {
-      console.error("Error fetching appointments:", error);
       Alert.alert("Error", "Failed to fetch appointments.");
     } finally {
       setLoading(false);
@@ -29,7 +26,6 @@ const UpcomingAppointmentScreen = ({navigation}) => {
     }
   };
   const onJoinMeet = async (id) => {
-    console.log(id)
     navigation.navigate('Home', {
         screen: 'Online',
         params: { id },
@@ -48,12 +44,10 @@ const UpcomingAppointmentScreen = ({navigation}) => {
 
   const onCancel = async (id) => {
     try {
-      console.log(id, userToken)
       const apiUrl = `${process.env.API_URL}/user/appointments/${id}/cancel`;
       const response = await axios.put(apiUrl, null, {
         headers: { Authorization: `Bearer ${userToken}` },
       });
-      console.log(response);
       fetchAppointments();
     } catch (error) {
       console.error("Error canceling appointment:", error);

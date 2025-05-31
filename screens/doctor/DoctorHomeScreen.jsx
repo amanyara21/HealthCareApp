@@ -22,7 +22,6 @@ const DoctorAppointmentList = () => {
         setRefreshing(false);
     };
 
-
     useEffect(() => {
         fetchAppointments();
     }, [selectedDate]);
@@ -34,7 +33,6 @@ const DoctorAppointmentList = () => {
                 'Content-Type': 'application/json',
 
             });
-            console.log(response.data)
             setAppointments(response.data);
         } catch (error) {
             console.error(error);

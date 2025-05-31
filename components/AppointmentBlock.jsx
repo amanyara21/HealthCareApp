@@ -15,7 +15,6 @@ const getTimePosition = (time) => {
 const AppointmentBlock = ({ appointment, index, onPressHandle }) => {
     const { startY, height } = getTimePosition(appointment.appointmentTime);
     const color = colors[index % colors.length];
-    console.log(appointment)
     return (
         <TouchableOpacity style={[styles.block, { top: startY, height, backgroundColor: color }]} onPress={()=>onPressHandle(appointment.id)}>
             <Text style={styles.name}>{appointment.patient.username}</Text>

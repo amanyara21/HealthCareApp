@@ -22,7 +22,6 @@ export default function AppNavigator() {
   const { hasDetails, loading: doctorLoading } = useContext(DoctorContext);
 
   if (authLoading || (user?.role === 'DOCTOR' && doctorLoading)) {
-    console.log(user?.role)
     return null;
   }
 

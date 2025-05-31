@@ -19,12 +19,9 @@ export default function MedicineTable() {
         setLoading(true);
         try {
             const apiUrl = `${process.env.API_URL}/user/prescriptions`;
-            console.log(apiUrl)
-            console.log(`Bearer ${userToken}`)
             const response = await axios.get(apiUrl, {
                 headers: { Authorization: `Bearer ${userToken}` },
             });
-            console.log(response.data)
             setPrescriptions(response.data);
         } catch (error) {
             console.error("Error fetching appointments:", error);

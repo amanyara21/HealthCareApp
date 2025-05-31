@@ -1,45 +1,61 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-
-const getNext2Days = () => {
-    const days = [];
-    const today = new Date();
-    for (let i = 0; i < 3; i++) {
-        const date = new Date();
-        date.setDate(today.getDate() + i);
-        days.push(date.toISOString().split('T')[0]);
-    }
-    return days;
-};
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const DatePicker = ({ selectedDate, onChange }) => {
+    const [showPicker, setShowPicker] = useState(false);
+
+    const today = new Date();
+    const maxDate = new Date();
+    maxDate.setDate(today.getDate() + 2);
+
+    const onChangeDate = (event, selected) => {
+        setShowPicker(Platform.OS === 'ios');
+        if (selected) {
+            const isoDate = selected.toISOString().split('T')[0];
+            onChange(isoDate);
+        }
+    };
+
     return (
-        <View style={styles.pickerContainer}>
-            <Picker selectedValue={selectedDate} onValueChange={onChange} style={styles.picker}>
-                {getNext2Days().map((date) => (
-                    <Picker.Item key={date} label={date} value={date} />
-                ))}
-            </Picker>
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.dateButton} onPress={() => setShowPicker(true)}>
+                <Text style={styles.buttonText}>Date: {selectedDate || 'None'}</Text>
+            </TouchableOpacity>
+            {showPicker && (
+                <DateTimePicker
+                    value={selectedDate ? new Date(selectedDate) : today}
+                    mode="date"
+                    display="default"
+                    onChange={onChangeDate}
+                    maximumDate={maxDate}
+                />
+            )}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    pickerContainer: {
-        width: 220,
-        height: 50,
-        alignSelf: 'center',
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 25,
-        overflow: 'hidden',
+    container: {
+        alignItems: 'center',
         marginBottom: 10,
     },
-    picker: {
-        height: 50,
+    dateButton: {
+        backgroundColor: '#4A90E2',
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 25,
+        elevation: 3,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    selectedText: {
+        marginTop: 12,
+        fontSize: 16,
         color: '#333',
-        paddingHorizontal: 10,
     },
 });
 

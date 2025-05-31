@@ -28,14 +28,12 @@ const LoginScreen = ({ navigation }) => {
 
     setLoading(true);
     try {
-      console.log(`${process.env.API_URL}/auth/login`)
       const response = await axios.post(`${process.env.API_URL}/auth/login`, { email, password });
       if (response.data.accessToken) {
         setUserToken(response.data.accessToken);
         await AsyncStorage.setItem("userToken", response.data.accessToken);
       }
     } catch (error) {
-      console.log(error);
       const message = error.response?.data?.message || "Invalid credentials!";
       Alert.alert("Login Failed", message);
     } finally {

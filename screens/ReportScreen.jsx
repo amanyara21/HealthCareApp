@@ -21,7 +21,6 @@ export default function ReportsImage() {
       const response = await axios.get(apiUrl, {
         headers: { Authorization: `Bearer ${userToken}` },
       });
-      console.log(response.data)
       setPrescriptions(response.data);
     } catch (error) {
       console.error("Error fetching appointments:", error);

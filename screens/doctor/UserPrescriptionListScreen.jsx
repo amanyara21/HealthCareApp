@@ -22,7 +22,6 @@ const UserPrescriptionListScreen = ({ route }) => {
                     Authorization: `Bearer ${userToken}`,
                 }
             });
-            console.log(response.data)
             setAppointment(response.data);
         } catch (error) {
             console.log('Error fetching appointment:', error);
@@ -33,8 +32,6 @@ const UserPrescriptionListScreen = ({ route }) => {
 
     const fetchPrescriptions = async () => {
         try {
-            console.log(`${process.env.API_URL}/doctor/prescriptions/${appointment.patient.email}`)
-            console.log(`Bearer ${userToken}`)
             const response = await axios.get(`${process.env.API_URL}/doctor/prescriptions/${appointment.patient.email}`, {
                 headers: {
                     Authorization: `Bearer ${userToken}`,
@@ -61,21 +58,12 @@ const UserPrescriptionListScreen = ({ route }) => {
         }
     }, [appointment]);
 
-    const renderPrescriptionItem = ({ item }) => (
-        <View style={styles.card}>
-            <Text style={styles.title}>Dr. {item.doctor.name}</Text>
-            <Text style={styles.subtitle}>Date: {item.date}</Text>
-            <Text style={styles.details}>Medicines: {item.medicines.length}</Text>
-            <Text style={styles.details}>Lab Tests: {item.labTests.length}</Text>
-        </View>
-    );
-
     return (
         <ScrollView contentContainerStyle={styles.container}>
             {appointment?.appointmentType === 'ONLINE' && (
                 <TouchableOpacity
                     style={styles.joinButton}
-                    onPress={() => navigation.navigate('JoinCall', { appointmentId })}
+                    onPress={() => navigation.navigate('Online', { appointmentId })}
                 >
                     <Text style={styles.buttonText}>Join Online Consultation</Text>
                 </TouchableOpacity>

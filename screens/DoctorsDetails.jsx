@@ -27,7 +27,6 @@ const DoctorsDetailsScreen = ({ route }) => {
         Authorization: `Bearer ${userToken}`
       };
       const response = await axios.get(url, { headers });
-      console.log(response.data)
       setDoctors(response.data)
     } catch (error) {
       console.error('Error fetching data:', error);

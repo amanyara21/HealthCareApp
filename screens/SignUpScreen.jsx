@@ -39,7 +39,6 @@ const SignupScreen = ({ navigation }) => {
         await AsyncStorage.setItem("userToken", response.data.accessToken);
       }
     } catch (error) {
-      console.log(error);
       const message =
         error.response?.data?.message ||
         error.response?.data?.error ||

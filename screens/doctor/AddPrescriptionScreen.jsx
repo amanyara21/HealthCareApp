@@ -76,7 +76,6 @@ const AddPrescriptionScreen = ({ route }) => {
                 medicines,
                 labTests,
             };
-            console.log(payload)
 
             await axios.post(`${process.env.API_URL}/doctor/prescriptions`, payload, {
                 headers: {

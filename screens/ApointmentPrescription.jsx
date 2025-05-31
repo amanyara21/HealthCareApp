@@ -14,8 +14,6 @@ const AppointmentPrescriptionScreen = ({ route }) => {
 
   const fetchPrescriptions = async () => {
     try {
-      console.log(`${process.env.API_URL}/user/appointment/prescription/${id}`)
-      console.log(`Bearer ${userToken}`)
       const response = await axios.get(`${process.env.API_URL}/user/appointment/prescription/${id}`, {
         headers: {
           Authorization: `Bearer ${userToken}`,

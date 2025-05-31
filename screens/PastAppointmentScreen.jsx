@@ -19,11 +19,9 @@ const PastAppointmentScreen = ({ navigation }) => {
         try {
 
             const apiUrl = `${process.env.API_URL}/user/appointments/past`;
-            console.log(apiUrl)
             const response = await axios.get(apiUrl, {
                 headers: { Authorization: `Bearer ${userToken}` },
             });
-            console.log(response.data)
             setAppointments(response.data);
         } catch (error) {
             console.error("Error fetching appointments:", error);
@@ -34,7 +32,6 @@ const PastAppointmentScreen = ({ navigation }) => {
     };
 
     const onSeeDetails = async (id) => {
-        console.log(id)
         navigation.navigate('Home', {
             screen: 'PrescriptionScreen',
             params: { id },

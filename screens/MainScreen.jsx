@@ -49,7 +49,6 @@ const MainScreen = () => {
 
   }
   const onPress = (partName, image) => {
-    console.log(partName)
     navigation.navigate('Doctors', { partName, image })
   }
   const onLogout = async() => {

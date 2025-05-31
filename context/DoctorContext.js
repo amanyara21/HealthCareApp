@@ -11,10 +11,14 @@ export const DoctorProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchDoctorDetails = async () => {
+            if (!user || user.role !== "DOCTOR") {
+                setHasDetails(false);
+                setLoading(false);
+                return;
+            }
+
             try {
                 if (user?.role === 'DOCTOR') {
-                    console.log(`${process.env.API_URL}/doctor/get-doctor-detail`)
-                    console.log(`${process.env.API_URL}/doctor/get-doctor-detail`)
                     const response = await axios.get(`${process.env.API_URL}/doctor/get-doctor-detail`, {
                         headers: {
                             Authorization: `Bearer ${userToken}`
@@ -28,14 +32,13 @@ export const DoctorProvider = ({ children }) => {
                 }
                 setLoading(false);
             } catch (error) {
-                console.log('Doctor detail check error:', error.response?.data?.message);
                 setHasDetails(false);
                 setLoading(false);
             }
         };
 
         fetchDoctorDetails();
-    }, [userToken]);
+    }, [user]);
 
     return (
         <DoctorContext.Provider value={{ hasDetails, loading, setHasDetails }}>

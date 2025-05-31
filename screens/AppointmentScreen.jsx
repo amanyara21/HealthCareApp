@@ -43,10 +43,7 @@ const AppointmentBookingScreen = ({ route }) => {
 
   const getAvailableSlots = async () => {
     try {
-      console.log("Booking appointment for doctor ID:");
-
       const apiUrl = `${API_URL}/api/available-slots/${doctorId}/${selectedDate}`;
-      console.log(apiUrl)
       const response = await axios.get(apiUrl, { headers });
       setAvailableSlots(response.data || []);
     } catch (error) {
@@ -58,7 +55,6 @@ const AppointmentBookingScreen = ({ route }) => {
   const onChangeDate = (event, selectedDate) => {
     if (event.type === 'set' && selectedDate) {
       const formatted = moment(selectedDate).format('YYYY-MM-DD');
-      console.log('Selected date:', formatted);
       setSelectedDate(formatted);
       setSelectedSlot(null);
     } else {
@@ -77,8 +73,6 @@ const AppointmentBookingScreen = ({ route }) => {
     }
 
     try {
-      console.log("Booking appointment for doctor ID:", appointmentType);
-
       const response = await axios.post(
         `${API_URL}/user/appointments/book`,
         {
